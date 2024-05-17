@@ -62,4 +62,14 @@ public class ServerController {
             e.printStackTrace();
         }
     }
+    /**
+     * Метод записывает в БД новую медицинскую карту
+     * @param doctorId - id лечащего врача
+     * @param patientId - id пациента
+     * @param diagnosis - диагноз пациента
+     * @param prescription - лечение
+     */
+    private void writeMedicalRecord(int doctorId, int patientId, String diagnosis, String prescription) {
+        
+    }
 }
