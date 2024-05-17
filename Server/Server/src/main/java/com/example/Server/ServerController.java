@@ -1,6 +1,7 @@
 package com.example.Server;
 
 import com.example.Server.db.Doctor;
+import com.example.Server.db.MedicalRecord;
 import com.example.Server.db.Patient;
 import com.example.Server.util.HibernateUtil;
 import org.hibernate.Session;
@@ -20,6 +21,11 @@ public class ServerController {
      */
     @GetMapping("/")
     private String getInfo() {
+        Doctor doctor = new Doctor("Иннокентьева", "Гастроэнтеролог", "Дента - плюс", "+79993332211");
+        Patient patient = new Patient("Борубаев", "12345678", "Ленина 63", "9");
+        writeDoctor(doctor);
+        writePatient(patient);
+        writeMedicalRecord(1, 1, "Нарушение ЖКТ", "Лечение ЖКТ");
         return "База данных поликлиники";
     }
     /**
@@ -31,7 +37,7 @@ public class ServerController {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Старт транзакции
             transaction = session.beginTransaction();
-            // Добавим в БД клиента
+            // Добавим в БД врача
             session.persist(doctor);
             // Коммит транзакции
             transaction.commit();
@@ -51,7 +57,7 @@ public class ServerController {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Старт транзакции
             transaction = session.beginTransaction();
-            // Добавим в БД клиента
+            // Добавим в БД пациента
             session.persist(patient);
             // Коммит транзакции
             transaction.commit();
@@ -70,6 +76,29 @@ public class ServerController {
      * @param prescription - лечение
      */
     private void writeMedicalRecord(int doctorId, int patientId, String diagnosis, String prescription) {
-        
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Выдергиваем из БД доктора
+            Doctor doctor = session.get(Doctor.class, doctorId);
+            // Выдергиваем из БД пациента
+            Patient patient = session.get(Patient.class, patientId);
+            // Создание новой медицинской карты
+            MedicalRecord medicalRecord = new MedicalRecord();
+            medicalRecord.setDoctor(doctor);
+            medicalRecord.setPatient(patient);
+            medicalRecord.setDiagnosis(diagnosis);
+            medicalRecord.setPrescription(prescription);
+            // Добавим в БД клиента
+            session.persist(medicalRecord);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 }
