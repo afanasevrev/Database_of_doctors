@@ -21,11 +21,6 @@ public class ServerController {
      */
     @GetMapping("/")
     private String getInfo() {
-        Doctor doctor = new Doctor("Иннокентьева", "Гастроэнтеролог", "Дента - плюс", "+79993332211");
-        Patient patient = new Patient("Борубаев", "12345678", "Ленина 63", "9");
-        writeDoctor(doctor);
-        writePatient(patient);
-        writeMedicalRecord(1, 1, "Нарушение ЖКТ", "Лечение ЖКТ");
         return "База данных поликлиники";
     }
     /**
