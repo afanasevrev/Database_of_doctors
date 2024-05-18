@@ -73,11 +73,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="376.0">
                      <children>
-                        <TextField layoutX="21.0" layoutY="57.0" promptText="Фамилия врача" />
-                        <TextField layoutX="21.0" layoutY="102.0" promptText="Специальность врача" />
-                        <TextField layoutX="21.0" layoutY="148.0" promptText="Рабочий кабинет врача" />
-                        <TextField layoutX="21.0" layoutY="191.0" promptText="Телефон врача" />
-                        <Button layoutX="21.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Добавить врача" />
+                        <TextField fx:id="textFieldDoctorFirstName" layoutX="21.0" layoutY="57.0" promptText="Фамилия врача" />
+                        <TextField fx:id="textFieldDoctorSpecialty" layoutX="21.0" layoutY="102.0" promptText="Специальность врача" />
+                        <TextField fx:id="textFieldDoctorOffice" layoutX="21.0" layoutY="148.0" promptText="Рабочий кабинет врача" />
+                        <TextField fx:id="textFieldDoctorPhone" layoutX="21.0" layoutY="191.0" promptText="Телефон врача" />
+                        <Button fx:id="buttonCreateDoctor" layoutX="21.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Добавить врача" />
                         <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" text="Добавить врача">
                            <font>
                               <Font size="18.0" />
@@ -89,10 +89,10 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="205.0" layoutY="57.0" prefHeight="25.0" prefWidth="162.0" promptText="Фамилия пациента" />
-                        <TextField layoutX="205.0" layoutY="102.0" prefHeight="25.0" prefWidth="162.0" promptText="Номер страхового полиса" />
-                        <TextField layoutX="205.0" layoutY="148.0" prefHeight="25.0" prefWidth="161.0" promptText="Адрес" />
-                        <TextField layoutX="205.0" layoutY="191.0" prefHeight="25.0" prefWidth="161.0" promptText="Участок" />
+                        <TextField fx:id="textFieldPatientFirstName" layoutX="205.0" layoutY="57.0" prefHeight="25.0" prefWidth="162.0" promptText="Фамилия пациента" />
+                        <TextField fx:id="textFieldPatientInsuranceNumber" layoutX="205.0" layoutY="102.0" prefHeight="25.0" prefWidth="162.0" promptText="Номер страхового полиса" />
+                        <TextField fx:id="textFieldPatientAddress" layoutX="205.0" layoutY="148.0" prefHeight="25.0" prefWidth="161.0" promptText="Адрес" />
+                        <TextField fx:id="textFieldPatientSection" layoutX="205.0" layoutY="191.0" prefHeight="25.0" prefWidth="161.0" promptText="Участок" />
                         <Button layoutX="205.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Добавить пациента" />
                         <Separator layoutX="382.0" layoutY="15.0" orientation="VERTICAL" prefHeight="260.0" prefWidth="5.0" />
                         <Label layoutX="388.0" layoutY="14.0" text="Добавить мед. карту">
