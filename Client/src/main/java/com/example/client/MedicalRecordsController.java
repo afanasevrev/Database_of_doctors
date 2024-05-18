@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
  * Контроллер для файла main.fxml
  */
 public class MedicalRecordsController {
+    private String url = "http://" + Variables.ip_server + ":" + Variables.port_server;
     //Врачи
     @FXML
     private TextField textFieldDoctorFirstName = new TextField();
@@ -46,5 +47,18 @@ public class MedicalRecordsController {
     private Button buttonCreateMedicalRecord = new Button();
 
     //------------------------------------------------------------//
+    /**
+     * Реализуем кнопку "Добавить врача"
+     */
+    private void setButtonCreateDoctor() {
+        if (!textFieldDoctorFirstName.getText().isEmpty() && !textFieldDoctorSpecialty.getText().isEmpty()
+        && !textFieldDoctorOffice.getText().isEmpty() && !textFieldDoctorPhone.getText().isEmpty()) {
+            String url_create_doctor = this.url + "/createDoctor/"
+                    + textFieldDoctorFirstName.getText() + "&"
+                    + textFieldDoctorSpecialty.getText() + "&"
+                    + textFieldDoctorOffice.getText() + "&"
+                    + textFieldDoctorPhone.getText();
 
+        }
+    }
 }
