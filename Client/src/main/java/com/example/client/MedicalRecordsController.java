@@ -3,10 +3,12 @@ package com.example.client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.apache.log4j.Logger;
 /**
  * Контроллер для файла main.fxml
  */
 public class MedicalRecordsController {
+    private Logger logger = Logger.getLogger(MedicalRecordsController.class);
     private String url = "http://" + Variables.ip_server + ":" + Variables.port_server;
     //Врачи
     @FXML
@@ -58,6 +60,7 @@ public class MedicalRecordsController {
                     + textFieldDoctorSpecialty.getText() + "&"
                     + textFieldDoctorOffice.getText() + "&"
                     + textFieldDoctorPhone.getText();
+
 
         }
     }
