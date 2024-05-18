@@ -69,6 +69,10 @@ public class MedicalRecordsController {
             try {
                 response = restTemplate.exchange(url_create_doctor, HttpMethod.GET, null, String.class);
                 logger.info(response.getBody());
+                textFieldDoctorFirstName.setText("");
+                textFieldDoctorSpecialty.setText("");
+                textFieldDoctorOffice.setText("");
+                textFieldDoctorPhone.setText("");
             } catch (RuntimeException e) {
                 logger.error(e);
             }

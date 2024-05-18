@@ -7,6 +7,7 @@ import com.example.Server.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 /**
  * Контроллер, управляет записями в БД
@@ -22,6 +23,12 @@ public class ServerController {
     @GetMapping("/")
     private String getInfo() {
         return "База данных поликлиники";
+    }
+    @GetMapping("/createDoctor/{firstName}&{specialty}&{office}&{phone}")
+    private String createDoctor(@PathVariable String firstName, @PathVariable String specialty, @PathVariable String office, @PathVariable String phone) {
+        Doctor doctor = new Doctor(firstName, specialty, office, phone);
+        writeDoctor(doctor);
+        return "Врач успешно добавлен в БД";
     }
     /**
      * Метод записывает в БД нового врача
