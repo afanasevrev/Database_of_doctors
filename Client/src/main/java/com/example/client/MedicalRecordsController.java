@@ -34,5 +34,17 @@ public class MedicalRecordsController {
 
     //------------------------------------------------------------//
     //Медицинские карты
+    @FXML
+    private TextField textFieldMedicalRecordPatientID = new TextField();
+    @FXML
+    private TextField textFieldMedicalRecordDoctorID = new TextField();
+    @FXML
+    private TextField textFieldMedicalRecordDiagnosis = new TextField();
+    @FXML
+    private TextField textFieldMedicalRecordPrescription = new TextField();
+    @FXML
+    private Button buttonCreateMedicalRecord = new Button();
+
+    //------------------------------------------------------------//
     
 }
