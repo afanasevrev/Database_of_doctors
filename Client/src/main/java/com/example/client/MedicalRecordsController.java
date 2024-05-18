@@ -3,16 +3,18 @@ package com.example.client;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 /**
- * Контроллер для докторов
+ * Контроллер для файла main.fxml
  */
 public class MedicalRecordsController {
+    //Врачи
     @FXML
-    private TextField textFieldFirstName = new TextField();
+    private TextField textFieldDoctorFirstName = new TextField();
     @FXML
-    private TextField textFieldSpecialty = new TextField();
+    private TextField textFieldDoctorSpecialty = new TextField();
     @FXML
-    private TextField textFieldOffice = new TextField();
+    private TextField textFieldDoctorOffice = new TextField();
     @FXML
-    private TextField textFieldPhone = new TextField();
-
+    private TextField textFieldDoctorPhone = new TextField();
+    
+    //------------------------------------------------------------//
 }
