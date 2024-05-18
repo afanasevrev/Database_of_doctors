@@ -4,12 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 /**
  * Контроллер для файла main.fxml
  */
 public class MedicalRecordsController {
     private Logger logger = Logger.getLogger(MedicalRecordsController.class);
     private String url = "http://" + Variables.ip_server + ":" + Variables.port_server;
+    private RestTemplate restTemplate = new RestTemplate();
     //Врачи
     @FXML
     private TextField textFieldDoctorFirstName = new TextField();
@@ -52,6 +56,7 @@ public class MedicalRecordsController {
     /**
      * Реализуем кнопку "Добавить врача"
      */
+    @FXML
     private void setButtonCreateDoctor() {
         if (!textFieldDoctorFirstName.getText().isEmpty() && !textFieldDoctorSpecialty.getText().isEmpty()
         && !textFieldDoctorOffice.getText().isEmpty() && !textFieldDoctorPhone.getText().isEmpty()) {
@@ -60,8 +65,15 @@ public class MedicalRecordsController {
                     + textFieldDoctorSpecialty.getText() + "&"
                     + textFieldDoctorOffice.getText() + "&"
                     + textFieldDoctorPhone.getText();
-
-
+            ResponseEntity<String> response = null;
+            try {
+                response = restTemplate.exchange(url_create_doctor, HttpMethod.GET, null, String.class);
+                logger.info(response.getBody());
+            } catch (RuntimeException e) {
+                logger.error(e);
+            }
+        } else {
+            logger.info("Заполните все поля");
         }
     }
 }
