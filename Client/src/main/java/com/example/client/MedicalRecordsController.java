@@ -46,5 +46,5 @@ public class MedicalRecordsController {
     private Button buttonCreateMedicalRecord = new Button();
 
     //------------------------------------------------------------//
-    
+
 }
