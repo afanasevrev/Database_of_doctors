@@ -100,11 +100,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="388.0" layoutY="57.0" prefHeight="25.0" prefWidth="170.0" promptText="Введите ID пациента" />
-                        <TextField layoutX="388.0" layoutY="102.0" prefHeight="25.0" prefWidth="170.0" promptText="Введите ID врача" />
-                        <TextField layoutX="388.0" layoutY="148.0" prefHeight="25.0" prefWidth="170.0" promptText="Диагноз" />
-                        <TextField layoutX="388.0" layoutY="191.0" prefHeight="25.0" prefWidth="170.0" promptText="Назначение" />
-                        <Button layoutX="388.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Добавить мед. карту" />
+                        <TextField fx:id="textFieldMedicalRecordPatientID" layoutX="388.0" layoutY="57.0" prefHeight="25.0" prefWidth="170.0" promptText="Введите ID пациента" />
+                        <TextField fx:id="textFieldMedicalRecordDoctorID" layoutX="388.0" layoutY="102.0" prefHeight="25.0" prefWidth="170.0" promptText="Введите ID врача" />
+                        <TextField fx:id="textFieldMedicalRecordDiagnosis" layoutX="388.0" layoutY="148.0" prefHeight="25.0" prefWidth="170.0" promptText="Диагноз" />
+                        <TextField fx:id="textFieldMedicalRecordPrescription" layoutX="388.0" layoutY="191.0" prefHeight="25.0" prefWidth="170.0" promptText="Назначение" />
+                        <Button fx:id="buttonCreateMedicalRecord" layoutX="388.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Добавить мед. карту" />
                      </children>
                   </AnchorPane>
               </content>
