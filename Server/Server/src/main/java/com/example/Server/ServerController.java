@@ -60,7 +60,7 @@ public class ServerController {
      * @param prescription Назначение
      * @return статус выполнения запроса
      */
-    @GetMapping("/createMedicalCard/{patientID}&{doctorID}&{diagnosis}&{prescription}")
+    @GetMapping("/createMedicalRecord/{patientID}&{doctorID}&{diagnosis}&{prescription}")
     private String createMedicalCard(@PathVariable String patientID, @PathVariable String doctorID, @PathVariable String diagnosis, @PathVariable String prescription) {
         try {
             int patient_ID = Integer.parseInt(patientID);
