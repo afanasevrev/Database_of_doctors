@@ -58,7 +58,7 @@ public class MedicalRecordsController {
     private TextField textFieldPatientSection = new TextField();
     @FXML
     private Button buttonCreatePatient = new Button();
-
+    
     //------------------------------------------------------------//
     //Медицинские карты
     @FXML
