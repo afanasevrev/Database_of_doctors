@@ -121,7 +121,23 @@ public class MedicalRecordsController {
             !textFieldMedicalRecordDiagnosis.getText().isEmpty() &&
             !textFieldMedicalRecordPrescription.getText().isEmpty())
         {
-            
+            String url_create_medical_record = this.url + "/createMedicalRecord/"
+                    + textFieldMedicalRecordPatientID.getText()
+                    + textFieldMedicalRecordDoctorID.getText()
+                    + textFieldMedicalRecordDiagnosis.getText()
+                    + textFieldMedicalRecordPrescription.getText();
+            try {
+                ResponseEntity<String> response = restTemplate.exchange(url_create_medical_record, HttpMethod.GET, null, String.class);
+                logger.info(response.getBody());
+                textFieldMedicalRecordPatientID.setText("");
+                textFieldMedicalRecordDoctorID.setText("");
+                textFieldMedicalRecordDiagnosis.setText("");
+                textFieldMedicalRecordPrescription.setText("");
+            } catch (RuntimeException e) {
+                logger.error(e);
+            }
+        } else {
+            logger.info("Заполните все поля");
         }
     }
 }
