@@ -93,7 +93,7 @@
                         <TextField fx:id="textFieldPatientInsuranceNumber" layoutX="205.0" layoutY="102.0" prefHeight="25.0" prefWidth="162.0" promptText="Номер страхового полиса" />
                         <TextField fx:id="textFieldPatientAddress" layoutX="205.0" layoutY="148.0" prefHeight="25.0" prefWidth="161.0" promptText="Адрес" />
                         <TextField fx:id="textFieldPatientSection" layoutX="205.0" layoutY="191.0" prefHeight="25.0" prefWidth="161.0" promptText="Участок" />
-                        <Button layoutX="205.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Добавить пациента" />
+                        <Button fx:id="buttonCreatePatient" onAction="#setButtonCreatePatient" layoutX="205.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Добавить пациента" />
                         <Separator layoutX="382.0" layoutY="15.0" orientation="VERTICAL" prefHeight="260.0" prefWidth="5.0" />
                         <Label layoutX="388.0" layoutY="14.0" text="Добавить мед. карту">
                            <font>

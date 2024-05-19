@@ -24,11 +24,33 @@ public class ServerController {
     private String getInfo() {
         return "База данных поликлиники";
     }
+    /**
+     * По запросу от клиента добавляем в БД врача
+     * @param firstName фамилия
+     * @param specialty специальность
+     * @param office рабочий кабинет
+     * @param phone телефон
+     * @return статус выполнения запроса
+     */
     @GetMapping("/createDoctor/{firstName}&{specialty}&{office}&{phone}")
     private String createDoctor(@PathVariable String firstName, @PathVariable String specialty, @PathVariable String office, @PathVariable String phone) {
         Doctor doctor = new Doctor(firstName, specialty, office, phone);
         writeDoctor(doctor);
         return "Врач успешно добавлен в БД";
+    }
+    /**
+     * По запросу от клиента добавляем в БД пациента
+     * @param firstName фамилия
+     * @param insuranceNumber номер страхового полиса
+     * @param address адрес
+     * @param section номер участка
+     * @return статус выполнения запроса
+     */
+    @GetMapping("/createPatient/{firstName}&{insuranceNumber}&{address}&{section}")
+    private String createPatient(@PathVariable String firstName, @PathVariable String insuranceNumber, @PathVariable String address, @PathVariable String section) {
+        Patient patient = new Patient(firstName, insuranceNumber, address, section);
+        writePatient(patient);
+        return "Пациент успешно добавлен";
     }
     /**
      * Метод записывает в БД нового врача

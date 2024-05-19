@@ -80,4 +80,33 @@ public class MedicalRecordsController {
             logger.info("Заполните все поля");
         }
     }
+    /**
+     * Реализуем кнопку "Добавить пациента"
+     */
+    @FXML
+    private void setButtonCreatePatient() {
+        if (!textFieldPatientFirstName.getText().isEmpty() &&
+            !textFieldPatientAddress.getText().isEmpty() &&
+            !textFieldPatientInsuranceNumber.getText().isEmpty() &&
+            !textFieldPatientSection.getText().isEmpty()
+        )
+        {
+           String url_create_patient = this.url + "/createPatient/"
+                   + textFieldPatientFirstName.getText() + "&"
+                   + textFieldPatientInsuranceNumber.getText() + "&"
+                   + textFieldPatientAddress.getText() + "&"
+                   + textFieldPatientSection.getText();
+           ResponseEntity<String> response = null;
+           try {
+               response = restTemplate.exchange(url_create_patient, HttpMethod.GET, null, String.class);
+               logger.info(response.getBody());
+               textFieldPatientFirstName.setText("");
+               textFieldPatientInsuranceNumber.setText("");
+               textFieldPatientAddress.setText("");
+               textFieldPatientSection.setText("");
+           } catch (RuntimeException e) {
+               logger.error(e);
+           }
+        }
+    }
 }
