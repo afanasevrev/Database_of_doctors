@@ -1,6 +1,7 @@
 package com.example.client;
 
 import com.example.client.doctor.Doctor;
+import com.example.client.medical_record.MedicalRecord;
 import com.example.client.patient.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,7 +87,21 @@ public class MedicalRecordsController {
     private TextField textFieldMedicalRecordPrescription = new TextField();
     @FXML
     private Button buttonCreateMedicalRecord = new Button();
-
+    @FXML
+    private TableView<MedicalRecord> tableViewMedicalRecord = new TableView<MedicalRecord>();
+    private ObservableList<MedicalRecord> medicalRecordsData = FXCollections.<MedicalRecord>observableArrayList();
+    @FXML
+    private TableColumn<MedicalRecord, String> tableColumnMedicalRecordId = new TableColumn<MedicalRecord, String>("ID");
+    @FXML
+    private TableColumn<MedicalRecord, String> tableColumnMedicalRecordPatientFirstName = new TableColumn<MedicalRecord, String>("Пациент");
+    @FXML
+    private TableColumn<MedicalRecord, String> tableColumnMedicalRecordDoctorFirstName = new TableColumn<MedicalRecord, String>("Врач");
+    @FXML
+    private TableColumn<MedicalRecord, String> tableColumnMedicalRecordDiagnosis = new TableColumn<MedicalRecord, String>("Диагноз");
+    @FXML
+    private TableColumn<MedicalRecord, String> tableColumnMedicalRecordPrescription = new TableColumn<MedicalRecord, String>("Назначение");
+    @FXML
+    private Button buttonUpdateListMedicalRecords = new Button();
     //------------------------------------------------------------//
     /**
      * Реализуем кнопку "Добавить врача"
