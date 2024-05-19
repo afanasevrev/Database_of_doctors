@@ -14,6 +14,7 @@ public class MedicalRecordsController {
     private Logger logger = Logger.getLogger(MedicalRecordsController.class);
     private String url = "http://" + Variables.ip_server + ":" + Variables.port_server;
     private RestTemplate restTemplate = new RestTemplate();
+    //------------------------------------------------------------//
     //Врачи
     @FXML
     private TextField textFieldDoctorFirstName = new TextField();
