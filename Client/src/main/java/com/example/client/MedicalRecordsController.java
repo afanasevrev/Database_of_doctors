@@ -1,6 +1,7 @@
 package com.example.client;
 
 import com.example.client.doctor.Doctor;
+import com.example.client.patient.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,7 +59,21 @@ public class MedicalRecordsController {
     private TextField textFieldPatientSection = new TextField();
     @FXML
     private Button buttonCreatePatient = new Button();
-    
+    @FXML
+    private TableView<Patient> tableViewPatient = new TableView<Patient>();
+    private ObservableList<Patient> patientsData = FXCollections.<Patient>observableArrayList();
+    @FXML
+    private TableColumn<Patient, String> tableColumnPatientId = new TableColumn<Patient, String>("ID");
+    @FXML
+    private TableColumn<Patient, String> tableColumnPatientFirstName = new TableColumn<Patient, String>("Фамилия");
+    @FXML
+    private TableColumn<Patient, String> tableColumnPatientInsuranceNumber = new TableColumn<Patient, String>("Номер стр. полиса");
+    @FXML
+    private TableColumn<Patient, String> tableColumnPatientAddress = new TableColumn<Patient, String>("Адрес");
+    @FXML
+    private TableColumn<Patient, String> tableColumnPatientSection = new TableColumn<Patient, String>("Участок");
+    @FXML
+    private Button buttonUpdateListPatients = new Button();
     //------------------------------------------------------------//
     //Медицинские карты
     @FXML
