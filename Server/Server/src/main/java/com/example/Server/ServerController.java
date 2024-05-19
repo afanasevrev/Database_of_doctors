@@ -53,6 +53,25 @@ public class ServerController {
         return "Пациент успешно добавлен";
     }
     /**
+     * По запросу клиента добавлет мед. карту в БД
+     * @param patientID ID пациента
+     * @param doctorID ID врача
+     * @param diagnosis диагноз
+     * @param prescription Назначение
+     * @return статус выполнения запроса
+     */
+    @GetMapping("/createMedicalCard/{patientID}&{doctorID}&{diagnosis}&{prescription}")
+    private String createMedicalCard(@PathVariable String patientID, @PathVariable String doctorID, @PathVariable String diagnosis, @PathVariable String prescription) {
+        try {
+            int patient_ID = Integer.parseInt(patientID);
+            int doctor_ID = Integer.parseInt(doctorID);
+            writeMedicalRecord(doctor_ID, patient_ID, diagnosis, prescription);
+            return "Медицинская карта успешно добавлена в БД";
+        } catch (NumberFormatException e) {
+            return "Ошибка при добавлении";
+        }
+    }
+    /**
      * Метод записывает в БД нового врача
      * @param doctor
      */

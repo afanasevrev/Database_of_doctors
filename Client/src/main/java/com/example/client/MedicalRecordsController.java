@@ -122,9 +122,9 @@ public class MedicalRecordsController {
             !textFieldMedicalRecordPrescription.getText().isEmpty())
         {
             String url_create_medical_record = this.url + "/createMedicalRecord/"
-                    + textFieldMedicalRecordPatientID.getText()
-                    + textFieldMedicalRecordDoctorID.getText()
-                    + textFieldMedicalRecordDiagnosis.getText()
+                    + textFieldMedicalRecordPatientID.getText() + "&"
+                    + textFieldMedicalRecordDoctorID.getText() + "&"
+                    + textFieldMedicalRecordDiagnosis.getText() + "&"
                     + textFieldMedicalRecordPrescription.getText();
             try {
                 ResponseEntity<String> response = restTemplate.exchange(url_create_medical_record, HttpMethod.GET, null, String.class);

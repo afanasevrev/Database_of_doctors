@@ -104,7 +104,7 @@
                         <TextField fx:id="textFieldMedicalRecordDoctorID" layoutX="388.0" layoutY="102.0" prefHeight="25.0" prefWidth="170.0" promptText="Введите ID врача" />
                         <TextField fx:id="textFieldMedicalRecordDiagnosis" layoutX="388.0" layoutY="148.0" prefHeight="25.0" prefWidth="170.0" promptText="Диагноз" />
                         <TextField fx:id="textFieldMedicalRecordPrescription" layoutX="388.0" layoutY="191.0" prefHeight="25.0" prefWidth="170.0" promptText="Назначение" />
-                        <Button fx:id="buttonCreateMedicalRecord" layoutX="388.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Добавить мед. карту" />
+                        <Button fx:id="buttonCreateMedicalRecord" onAction="#setButtonCreateMedicalRecord" layoutX="388.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Добавить мед. карту" />
                      </children>
                   </AnchorPane>
               </content>
