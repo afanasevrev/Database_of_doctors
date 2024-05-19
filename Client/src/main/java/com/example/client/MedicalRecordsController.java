@@ -107,6 +107,21 @@ public class MedicalRecordsController {
            } catch (RuntimeException e) {
                logger.error(e);
            }
+        } else {
+            logger.info("Заполните все поля");
+        }
+    }
+    /**
+     * Реализуем кнопку "Добавить медицинскую карту"
+     */
+    @FXML
+    private void setButtonCreateMedicalRecord() {
+        if (!textFieldMedicalRecordPatientID.getText().isEmpty() &&
+            !textFieldMedicalRecordDoctorID.getText().isEmpty() &&
+            !textFieldMedicalRecordDiagnosis.getText().isEmpty() &&
+            !textFieldMedicalRecordPrescription.getText().isEmpty())
+        {
+            
         }
     }
 }
