@@ -1,4 +1,4 @@
-package com.example.client.tables;
+package com.example.client.patient;
 
 import lombok.Getter;
 import lombok.Setter;
