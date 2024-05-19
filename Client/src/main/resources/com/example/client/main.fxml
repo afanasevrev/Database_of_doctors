@@ -23,7 +23,7 @@
                           <columns>
                             <TableColumn fx:id="tableColumnDoctorId" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="tableColumnDoctorFirstName" prefWidth="75.0" text="Фамилия" />
-                              <TableColumn fx:id="tableColumnSpecialty" prefWidth="132.0" text="Специальность" />
+                              <TableColumn fx:id="tableColumnDoctorSpecialty" prefWidth="132.0" text="Специальность" />
                               <TableColumn fx:id="tableColumnDoctorOffice" prefWidth="130.0" text="Раб. кабинет" />
                               <TableColumn fx:id="tableColumnDoctorPhone" prefWidth="101.33331298828125" text="Телефон" />
                           </columns>

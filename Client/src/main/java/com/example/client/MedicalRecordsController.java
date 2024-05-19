@@ -1,6 +1,7 @@
 package com.example.client;
 
 import com.example.client.doctor.Doctor;
+import com.example.client.doctor.DoctorTemp;
 import com.example.client.medical_record.MedicalRecord;
 import com.example.client.patient.Patient;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.apache.log4j.Logger;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -231,9 +233,15 @@ public class MedicalRecordsController implements Initializable {
     @FXML
     private void setButtonUpdateListDoctors() {
         String url_getDoctors = this.url + "/getDoctors";
-        ResponseEntity<String> response = restTemplate.exchange(url_getDoctors, HttpMethod.GET, null, String.class);
+        ResponseEntity<List<DoctorTemp>> response = restTemplate.exchange(url_getDoctors, HttpMethod.GET, null, new ParameterizedTypeReference<List<DoctorTemp>>(){});
         try {
             logger.info(response.getBody());
+            doctorsData.clear();
+            List<DoctorTemp> doctorTemps = response.getBody();
+            for (DoctorTemp doctorTemp: doctorTemps) {
+                Doctor doctor = new Doctor(doctorTemp.getId(), doctorTemp.getFirst_name(), doctorTemp.getSpecialty(), doctorTemp.getOffice(), doctorTemp.getPhone());
+                doctorsData.add(doctor);
+            }
         } catch (RuntimeException e) {
             logger.error(e);
         }
