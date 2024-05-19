@@ -19,16 +19,16 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="524.0">
+                        <TableView fx:id="tableViewDoctor" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="524.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="ID" />
-                            <TableColumn prefWidth="75.0" text="Фамилия" />
-                              <TableColumn prefWidth="132.0" text="Специальность" />
-                              <TableColumn prefWidth="130.0" text="Раб. кабинет" />
-                              <TableColumn prefWidth="101.33331298828125" text="Телефон" />
+                            <TableColumn fx:id="tableColumnDoctorId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="tableColumnDoctorFirstName" prefWidth="75.0" text="Фамилия" />
+                              <TableColumn fx:id="tableColumnSpecialty" prefWidth="132.0" text="Специальность" />
+                              <TableColumn fx:id="tableColumnDoctorOffice" prefWidth="130.0" text="Раб. кабинет" />
+                              <TableColumn fx:id="tableColumnDoctorPhone" prefWidth="101.33331298828125" text="Телефон" />
                           </columns>
                         </TableView>
-                        <Button layoutX="14.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Обновить список" />
+                        <Button fx:id="buttonUpdateListDoctors" layoutX="14.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Обновить список" />
                      </children>
                   </AnchorPane>
             </content>

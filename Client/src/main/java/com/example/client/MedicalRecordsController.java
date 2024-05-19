@@ -1,7 +1,12 @@
 package com.example.client;
 
+import com.example.client.doctor.Doctor;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpMethod;
@@ -26,7 +31,21 @@ public class MedicalRecordsController {
     private TextField textFieldDoctorPhone = new TextField();
     @FXML
     private Button buttonCreateDoctor = new Button();
-
+    @FXML
+    private TableView<Doctor> tableViewDoctor = new TableView<Doctor>();
+    private ObservableList<Doctor> doctorsData = FXCollections.<Doctor>observableArrayList();
+    @FXML
+    private TableColumn<Doctor, String> tableColumnDoctorId = new TableColumn<Doctor, String>("ID");
+    @FXML
+    private TableColumn<Doctor, String> tableColumnDoctorFirstName = new TableColumn<Doctor, String>("Фамилия");
+    @FXML
+    private TableColumn<Doctor, String> tableColumnSpecialty = new TableColumn<Doctor, String>("Специальность");
+    @FXML
+    private TableColumn<Doctor, String> tableColumnDoctorOffice = new TableColumn<Doctor, String>("Раб. кабинет");
+    @FXML
+    private TableColumn<Doctor, String> tableColumnDoctorPhone = new TableColumn<Doctor, String>("Телефон");
+    @FXML
+    private Button buttonUpdateListDoctors = new Button();
     //------------------------------------------------------------//
     //Пациенты
     @FXML
