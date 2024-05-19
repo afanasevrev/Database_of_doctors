@@ -28,7 +28,7 @@
                               <TableColumn fx:id="tableColumnDoctorPhone" prefWidth="101.33331298828125" text="Телефон" />
                           </columns>
                         </TableView>
-                        <Button fx:id="buttonUpdateListDoctors" layoutX="14.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Обновить список" />
+                        <Button fx:id="buttonUpdateListDoctors" onAction="#setButtonUpdateListDoctors" layoutX="14.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Обновить список" />
                      </children>
                   </AnchorPane>
             </content>
@@ -55,16 +55,16 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="29.0" layoutY="14.0" prefHeight="210.0" prefWidth="527.0">
+                        <TableView fx:id="tableViewMedicalRecord" layoutX="29.0" layoutY="14.0" prefHeight="210.0" prefWidth="527.0">
                           <columns>
-                            <TableColumn prefWidth="55.999969482421875" text="ID" />
-                            <TableColumn prefWidth="100.0" text="Пациент" />
-                              <TableColumn prefWidth="100.66668701171875" text="Врач" />
-                              <TableColumn prefWidth="152.0" text="Диагноз" />
-                              <TableColumn prefWidth="103.99993896484375" text="Назначение" />
+                            <TableColumn fx:id="tableColumnMedicalRecordId" prefWidth="55.999969482421875" text="ID" />
+                            <TableColumn fx:id="tableColumnMedicalRecordPatientFirstName" prefWidth="100.0" text="Пациент" />
+                              <TableColumn fx:id="tableColumnMedicalRecordDoctorFirstName" prefWidth="100.66668701171875" text="Врач" />
+                              <TableColumn fx:id="tableColumnMedicalRecordDiagnosis" prefWidth="152.0" text="Диагноз" />
+                              <TableColumn fx:id="tableColumnMedicalRecordPrescription" prefWidth="103.99993896484375" text="Назначение" />
                           </columns>
                         </TableView>
-                        <Button layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="Обновить список" />
+                        <Button fx:id="buttonUpdateListMedicalRecords" layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="Обновить список" />
                      </children>
                   </AnchorPane>
               </content>

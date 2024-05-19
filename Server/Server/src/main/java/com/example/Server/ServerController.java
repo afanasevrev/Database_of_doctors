@@ -9,6 +9,10 @@ import org.hibernate.Transaction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Контроллер, управляет записями в БД
  * отвечает на запросы клиентов
@@ -70,6 +74,27 @@ public class ServerController {
         } catch (NumberFormatException e) {
             return "Ошибка при добавлении";
         }
+    }
+    /**
+     * По запросу от клиента, метод вытягивает из БД список врачей
+     * @return
+     */
+    @GetMapping("/getDoctors")
+    private List<Doctor> getDoctorsList() {
+        List<Doctor> doctorsList = new ArrayList<>();
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            doctorsList = session.createQuery("from Doctor", Doctor.class).getResultList();
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return doctorsList;
     }
     /**
      * Метод записывает в БД нового врача

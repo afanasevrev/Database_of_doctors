@@ -6,6 +6,7 @@ import com.example.client.patient.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,10 +15,15 @@ import org.apache.log4j.Logger;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 /**
  * Контроллер для файла main.fxml
  */
-public class MedicalRecordsController {
+public class MedicalRecordsController implements Initializable {
     private Logger logger = Logger.getLogger(MedicalRecordsController.class);
     private String url = "http://" + Variables.ip_server + ":" + Variables.port_server;
     private RestTemplate restTemplate = new RestTemplate();
@@ -41,7 +47,7 @@ public class MedicalRecordsController {
     @FXML
     private TableColumn<Doctor, String> tableColumnDoctorFirstName = new TableColumn<Doctor, String>("Фамилия");
     @FXML
-    private TableColumn<Doctor, String> tableColumnSpecialty = new TableColumn<Doctor, String>("Специальность");
+    private TableColumn<Doctor, String> tableColumnDoctorSpecialty = new TableColumn<Doctor, String>("Специальность");
     @FXML
     private TableColumn<Doctor, String> tableColumnDoctorOffice = new TableColumn<Doctor, String>("Раб. кабинет");
     @FXML
@@ -102,6 +108,34 @@ public class MedicalRecordsController {
     private TableColumn<MedicalRecord, String> tableColumnMedicalRecordPrescription = new TableColumn<MedicalRecord, String>("Назначение");
     @FXML
     private Button buttonUpdateListMedicalRecords = new Button();
+    /**
+     * Инициализация при запуске формы
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableViewDoctor.setItems(doctorsData);
+        tableColumnDoctorId.setCellValueFactory(cellData -> cellData.getValue().id);
+        tableColumnDoctorFirstName.setCellValueFactory(cellData -> cellData.getValue().first_name);
+        tableColumnDoctorSpecialty.setCellValueFactory(cellData -> cellData.getValue().specialty);
+        tableColumnDoctorOffice.setCellValueFactory(cellData -> cellData.getValue().office);
+        tableColumnDoctorPhone.setCellValueFactory(cellData -> cellData.getValue().phone);
+        //------------------------------------------------------------//
+        tableViewPatient.setItems(patientsData);
+        tableColumnPatientId.setCellValueFactory(cellData -> cellData.getValue().id);
+        tableColumnDoctorFirstName.setCellValueFactory(cellData -> cellData.getValue().first_name);
+        tableColumnPatientInsuranceNumber.setCellValueFactory(cellData -> cellData.getValue().insurance_number);
+        tableColumnPatientAddress.setCellValueFactory(cellData -> cellData.getValue().address);
+        tableColumnPatientSection.setCellValueFactory(cellData -> cellData.getValue().section);
+        //------------------------------------------------------------//
+        tableViewMedicalRecord.setItems(medicalRecordsData);
+        tableColumnMedicalRecordId.setCellValueFactory(cellData -> cellData.getValue().id);
+        tableColumnMedicalRecordPatientFirstName.setCellValueFactory(cellData -> cellData.getValue().patient_first_name);
+        tableColumnMedicalRecordDoctorFirstName.setCellValueFactory(cellData -> cellData.getValue().doctor_first_name);
+        tableColumnMedicalRecordDiagnosis.setCellValueFactory(cellData -> cellData.getValue().diagnosis);
+        tableColumnMedicalRecordPrescription.setCellValueFactory(cellData -> cellData.getValue().prescription);
+    }
     //------------------------------------------------------------//
     /**
      * Реализуем кнопку "Добавить врача"
@@ -188,6 +222,20 @@ public class MedicalRecordsController {
             }
         } else {
             logger.info("Заполните все поля");
+        }
+    }
+    /**
+     * Метод заполняет таблицу с врачами
+     * предварительно направив на сервер GET - запрос
+     */
+    @FXML
+    private void setButtonUpdateListDoctors() {
+        String url_getDoctors = this.url + "/getDoctors";
+        ResponseEntity<String> response = restTemplate.exchange(url_getDoctors, HttpMethod.GET, null, String.class);
+        try {
+            logger.info(response.getBody());
+        } catch (RuntimeException e) {
+            logger.error(e);
         }
     }
 }
