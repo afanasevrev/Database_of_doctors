@@ -3,6 +3,7 @@ package com.example.Server;
 import com.example.Server.db.Doctor;
 import com.example.Server.db.MedicalRecord;
 import com.example.Server.db.Patient;
+import com.example.Server.medical_record.MedicalRecordTemp;
 import com.example.Server.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -116,6 +117,31 @@ public class ServerController {
             }
         }
         return patientsList;
+    }
+    /**
+     * По запросу от клиента, метод вытягивает из БД список медицинских карт
+     * @return
+     */
+    @GetMapping("/getMedicalRecords")
+    private List<MedicalRecordTemp> getMedicalRecordsList() {
+        List<MedicalRecordTemp> medicalRecordTemps = new ArrayList<>();
+        List<MedicalRecord> medicalRecords = new ArrayList<>();
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            medicalRecords = session.createQuery("from MedicalRecord", MedicalRecord.class).getResultList();
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        for (MedicalRecord medicalRecord: medicalRecords) {
+            medicalRecordTemps.add(new MedicalRecordTemp(String.valueOf(medicalRecord.getId()), medicalRecord.getPatient().getFirst_name(), medicalRecord.getDoctor().getFirst_name(), medicalRecord.getDiagnosis(), medicalRecord.getPrescription()));
+        }
+        return medicalRecordTemps;
     }
     /**
      * Метод записывает в БД нового врача

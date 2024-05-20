@@ -64,7 +64,7 @@
                               <TableColumn fx:id="tableColumnMedicalRecordPrescription" prefWidth="103.99993896484375" text="Назначение" />
                           </columns>
                         </TableView>
-                        <Button fx:id="buttonUpdateListMedicalRecords" layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="Обновить список" />
+                        <Button fx:id="buttonUpdateListMedicalRecords" onAction="#setButtonUpdateListMedicalRecords" layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="Обновить список" />
                      </children>
                   </AnchorPane>
               </content>

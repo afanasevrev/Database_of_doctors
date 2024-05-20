@@ -3,6 +3,7 @@ package com.example.client;
 import com.example.client.doctor.Doctor;
 import com.example.client.doctor.DoctorTemp;
 import com.example.client.medical_record.MedicalRecord;
+import com.example.client.medical_record.MedicalRecordTemp;
 import com.example.client.patient.Patient;
 import com.example.client.patient.PatientTemp;
 import javafx.collections.FXCollections;
@@ -255,11 +256,32 @@ public class MedicalRecordsController implements Initializable {
         String url_getPatients = this.url +"/getPatients";
         ResponseEntity<List<PatientTemp>> response = null;
         try {
+            patientsData.clear();
             response = restTemplate.exchange(url_getPatients, HttpMethod.GET, null, new ParameterizedTypeReference<List<PatientTemp>>(){});
             List<PatientTemp> patientTemps = response.getBody();
             for (PatientTemp patientTemp: patientTemps) {
                 Patient patient = new Patient(patientTemp.getId(), patientTemp.getFirst_name(), patientTemp.getInsurance_number(), patientTemp.getAddress(), patientTemp.getSection());
                 patientsData.add(patient);
+            }
+        } catch (RuntimeException e) {
+            logger.error(e);
+        }
+    }
+    /**
+     *  Метод заполняет таблицу с медицинскими картами
+     *  предварительно направив на сервер GET - запрос
+     */
+    @FXML
+    public void setButtonUpdateListMedicalRecords() {
+        String url_getMedicalRecords = this.url + "/getMedicalRecords";
+        ResponseEntity<List<MedicalRecordTemp>> response = null;
+        try {
+            medicalRecordsData.clear();
+            response = restTemplate.exchange(url_getMedicalRecords, HttpMethod.GET, null, new ParameterizedTypeReference<List<MedicalRecordTemp>>(){});
+            List<MedicalRecordTemp> medicalRecordTemps = response.getBody();
+            for (MedicalRecordTemp medicalRecordTemp: medicalRecordTemps) {
+                MedicalRecord medicalRecord = new MedicalRecord(medicalRecordTemp.getId(), medicalRecordTemp.getPatient_first_name(), medicalRecordTemp.getDoctor_first_name(), medicalRecordTemp.getDiagnosis(), medicalRecordTemp.getPrescription());
+                medicalRecordsData.add(medicalRecord);
             }
         } catch (RuntimeException e) {
             logger.error(e);
