@@ -236,7 +236,6 @@ public class MedicalRecordsController implements Initializable {
         String url_getDoctors = this.url + "/getDoctors";
         ResponseEntity<List<DoctorTemp>> response = restTemplate.exchange(url_getDoctors, HttpMethod.GET, null, new ParameterizedTypeReference<List<DoctorTemp>>(){});
         try {
-            logger.info(response.getBody());
             doctorsData.clear();
             List<DoctorTemp> doctorTemps = response.getBody();
             for (DoctorTemp doctorTemp: doctorTemps) {
