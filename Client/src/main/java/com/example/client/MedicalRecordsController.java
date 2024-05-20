@@ -246,6 +246,10 @@ public class MedicalRecordsController implements Initializable {
             logger.error(e);
         }
     }
+    /**
+     * Метод заполняет таблицу с пациентами
+     * предварительно направив на сервер GET - запрос
+     */
     @FXML
     private void setButtonUpdateListPatients() {
         String url_getPatients = this.url +"/getPatients";
