@@ -126,7 +126,7 @@ public class MedicalRecordsController implements Initializable {
         //------------------------------------------------------------//
         tableViewPatient.setItems(patientsData);
         tableColumnPatientId.setCellValueFactory(cellData -> cellData.getValue().id);
-        tableColumnDoctorFirstName.setCellValueFactory(cellData -> cellData.getValue().first_name);
+        tableColumnPatientFirstName.setCellValueFactory(cellData -> cellData.getValue().first_name);
         tableColumnPatientInsuranceNumber.setCellValueFactory(cellData -> cellData.getValue().insurance_number);
         tableColumnPatientAddress.setCellValueFactory(cellData -> cellData.getValue().address);
         tableColumnPatientSection.setCellValueFactory(cellData -> cellData.getValue().section);
