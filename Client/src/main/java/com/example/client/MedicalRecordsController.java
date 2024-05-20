@@ -4,6 +4,7 @@ import com.example.client.doctor.Doctor;
 import com.example.client.doctor.DoctorTemp;
 import com.example.client.medical_record.MedicalRecord;
 import com.example.client.patient.Patient;
+import com.example.client.patient.PatientTemp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -241,6 +242,21 @@ public class MedicalRecordsController implements Initializable {
             for (DoctorTemp doctorTemp: doctorTemps) {
                 Doctor doctor = new Doctor(doctorTemp.getId(), doctorTemp.getFirst_name(), doctorTemp.getSpecialty(), doctorTemp.getOffice(), doctorTemp.getPhone());
                 doctorsData.add(doctor);
+            }
+        } catch (RuntimeException e) {
+            logger.error(e);
+        }
+    }
+    @FXML
+    private void setButtonUpdateListPatients() {
+        String url_getPatients = this.url +"/getPatients";
+        ResponseEntity<List<PatientTemp>> response = null;
+        try {
+            response = restTemplate.exchange(url_getPatients, HttpMethod.GET, null, new ParameterizedTypeReference<List<PatientTemp>>(){});
+            List<PatientTemp> patientTemps = response.getBody();
+            for (PatientTemp patientTemp: patientTemps) {
+                Patient patient = new Patient(patientTemp.getId(), patientTemp.getFirst_name(), patientTemp.getInsurance_number(), patientTemp.getAddress(), patientTemp.getSection());
+                patientsData.add(patient);
             }
         } catch (RuntimeException e) {
             logger.error(e);

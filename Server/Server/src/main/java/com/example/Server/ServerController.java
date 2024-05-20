@@ -97,6 +97,27 @@ public class ServerController {
         return doctorsList;
     }
     /**
+     * По запросу от клиента, метод вытягивает из БД список пациентов
+     * @return
+     */
+    @GetMapping("/getPatients")
+    private List<Patient> getPatientsList() {
+        List<Patient> patientsList = new ArrayList<>();
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            patientsList = session.createQuery("from Patient", Patient.class).getResultList();
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return patientsList;
+    }
+    /**
      * Метод записывает в БД нового врача
      * @param doctor
      */
